@@ -143,9 +143,7 @@ int main(int argc, char *argv[])                                 //main method
 	    pthread_join(b[i],NULL);
 	    sleep(1);
     }
-    
-	done=1;
+        done=1;
 	sem_post(&pillow);
 	pthread_join(a,NULL);
 }
-
