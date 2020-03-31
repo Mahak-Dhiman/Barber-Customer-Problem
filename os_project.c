@@ -66,7 +66,7 @@ void wait(int sec)
 
 int main(int argc, char *argv[])                                 //main method
 { 
-    printf("_________________WELCOME TO THE BARBER SHOP_________________\n");
+        printf("_________________WELCOME TO THE BARBER SHOP_________________\n");
 	printf("\n");
 	printf("\t\t Enter no. of customers: ");
 	scanf("%d",&customers);
@@ -94,9 +94,9 @@ int main(int argc, char *argv[])                                 //main method
 	
     if(customers>chairs)                                    // customers wont be able to sit if seats are not sufficient
 	{
-	   	printf("\t No. of customers is greater than chairs.\n");
-        printf("\t The remaining customers leave the shop.\n");
-	    for(i=1;i<max_cust;i++)                          // loop to increase the variable for every customer.
+	   printf("\t No. of customers is greater than chairs.\n");
+           printf("\t The remaining customers leave the shop.\n");
+           for(i=1;i<max_cust;i++)                          // loop to increase the variable for every customer.
         {
 	       	numb[i]=i;                                   //initializing array
         }
