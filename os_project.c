@@ -28,7 +28,7 @@ int numb[max_cust];               //array of customers
  
 void *barber(void *junk)          //barber function
 {
-	while (!done)                 //customers who are left
+	while (!done)             //customers who are left
 	{
 		printf("\t Barber in his room is sleeping because no customer in barber room.\n");
 		sem_wait(&pillow);                   // pillow being used by barber to sleep on
@@ -89,14 +89,14 @@ int main(int argc, char *argv[])                                 //main method
 	if(chairs>max_chair )                                 //checking availabilty of seats
 	{
 	    printf("\t Chairs are exceding the limit. The max no. is %d\n",max_chair);
-	    exit(-1);                                       //returning
+	    exit(-1);                                        //returning
 	}
 	
-    if(customers>chairs)                                    // customers wont be able to sit if seats are not sufficient
+    if(customers>chairs)                                     // customers wont be able to sit if seats are not sufficient
     {
 	   printf("\t No. of customers is greater than chairs.\n");
            printf("\t The remaining customers leave the shop.\n");
-           for(i=1;i<max_cust;i++)                          // loop to increase the variable for every customer.
+           for(i=1;i<max_cust;i++)                           // loop to increase the variable for every customer.
         {
 	       	numb[i]=i;                                   //initializing array
         }
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])                                 //main method
         sem_init(&barber_chair,0,1);
        	sem_init(&pillow,0,0);
 	
-	pthread_create(&a,NULL,barber,NULL);             //create barber thread
+	pthread_create(&a,NULL,barber,NULL);                 //create barber thread
        	for(i=1;i<=chairs;i++)                               //loop for creating no. of customers thread
 	{
               pthread_create(&b[i],NULL,customer,(void*)&numb[i]);     //create customer thread
