@@ -39,7 +39,7 @@ void *barber(void *junk)          //barber function
 	printf("\n");
 }
 
-void *customer(void *num)                                          // customer function
+void *customer(void *num)                                              // customer function
 {
 	int n=*(int *)num;                                             //declaring new variable which is used as serial no. of customers
 	printf("%d.",n);                                               //adding sserial no. to each entry of customer
@@ -64,7 +64,7 @@ void wait(int sec)
 	sleep(l);                                                // wherever sleep is used, it goes through this formulation.
 }
 
-int main(int argc, char *argv[])                              //main method
+int main(int argc, char *argv[])                                 //main method
 { 
     printf("_________________WELCOME TO THE BARBER SHOP_________________\n");
 	printf("\n");
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])                              //main method
 		exit(-1);	
 	}
 	
-	if(customers>max_cust)                            //checking the availabilty of customers
+	if(customers>max_cust)                                //checking the availabilty of customers
 	{
 		printf("\t Customers exceding the limit. The max no. is %d\n ",max_cust);
 		exit(-1);                                     // returning
@@ -86,13 +86,13 @@ int main(int argc, char *argv[])                              //main method
 	scanf("%d",&chairs);
 	printf("\n");
 	        
-	if(chairs>max_chair )                            //checking availabilty of seats
+	if(chairs>max_chair )                                 //checking availabilty of seats
 	{
 	    printf("\t Chairs are exceding the limit. The max no. is %d\n",max_chair);
 		exit(-1);                                    //returning
 	}
 	
-    if(customers>chairs)                             // customers wont be able to sit if seats are not sufficient
+    if(customers>chairs)                                    // customers wont be able to sit if seats are not sufficient
 	{
 	   	printf("\t No. of customers is greater than chairs.\n");
         printf("\t The remaining customers leave the shop.\n");
@@ -101,19 +101,19 @@ int main(int argc, char *argv[])                              //main method
 	       	numb[i]=i;                                   //initializing array
         }
 	
-       	sem_init(&waiting_room,0,chairs);                //initialzing semaphores with initial values.
+       	sem_init(&waiting_room,0,chairs);                    //initialzing semaphores with initial values.
         sem_init(&barber_chair,0,1);
        	sem_init(&pillow,0,0);
 	
-	    pthread_create(&a,NULL,barber,NULL);              //create barber thread
-       	for(i=1;i<=chairs;i++)                            //loop for creating no. of customers thread
+	    pthread_create(&a,NULL,barber,NULL);             //create barber thread
+       	for(i=1;i<=chairs;i++)                               //loop for creating no. of customers thread
 	    {
 		    pthread_create(&b[i],NULL,customer,(void*)&numb[i]);     //create customer thread
 		    sleep(1);                                                // wait function' formula used 
         }
-        for(i=1;i<=chairs;i++)                                    // loop for joining threads
+        for(i=1;i<=chairs;i++)                                               // loop for joining threads
 	    {
-	        pthread_join(b[i],NULL);                             //join threads to wait for them to finish
+	        pthread_join(b[i],NULL);                                     //join threads to wait for them to finish
 	       	sleep(1);
         }
 	    done=1;                               //change it to 1 if all the customers are done with cutting and kill barber thread
