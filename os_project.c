@@ -33,7 +33,7 @@ void *barber(void *junk)          //barber function
 		printf("\t Barber in his room is sleeping because no customer in barber room.\n");
 		sem_wait(&pillow);                   // pillow being used by barber to sleep on
 		printf("\t Barber has finished his job.\n ");
-    }
+        }
 	printf("\n");
 	printf("_______________________CLOSED NOW__________________________");
 	printf("\n");
@@ -89,11 +89,11 @@ int main(int argc, char *argv[])                                 //main method
 	if(chairs>max_chair )                                 //checking availabilty of seats
 	{
 	    printf("\t Chairs are exceding the limit. The max no. is %d\n",max_chair);
-		exit(-1);                                    //returning
+	    exit(-1);                                       //returning
 	}
 	
     if(customers>chairs)                                    // customers wont be able to sit if seats are not sufficient
-	{
+    {
 	   printf("\t No. of customers is greater than chairs.\n");
            printf("\t The remaining customers leave the shop.\n");
            for(i=1;i<max_cust;i++)                          // loop to increase the variable for every customer.
@@ -105,14 +105,14 @@ int main(int argc, char *argv[])                                 //main method
         sem_init(&barber_chair,0,1);
        	sem_init(&pillow,0,0);
 	
-	    pthread_create(&a,NULL,barber,NULL);             //create barber thread
+	pthread_create(&a,NULL,barber,NULL);             //create barber thread
        	for(i=1;i<=chairs;i++)                               //loop for creating no. of customers thread
-	    {
-		    pthread_create(&b[i],NULL,customer,(void*)&numb[i]);     //create customer thread
-		    sleep(1);                                                // wait function' formula used 
+	{
+              pthread_create(&b[i],NULL,customer,(void*)&numb[i]);     //create customer thread
+	      sleep(1);                                                // wait function' formula used 
         }
         for(i=1;i<=chairs;i++)                                               // loop for joining threads
-	    {
+        {
 	        pthread_join(b[i],NULL);                                     //join threads to wait for them to finish
 	       	sleep(1);
         }
@@ -120,12 +120,12 @@ int main(int argc, char *argv[])                                 //main method
 	    sem_post(&pillow);                    //waking barber to make him exit
 	    pthread_join(a,NULL);
 	    exit(-1);
-	}
+     }
 	//the further loop is same as above, the difference is that it is for the chairs>=customers, rest initialzings are same
     for(i=1;i<max_cust;i++)
     {
-		numb[i]=i;
-	}
+	numb[i]=i;
+    }
 	
 	sem_init(&waiting_room,0,chairs);
 	sem_init(&barber_chair,0,1);
@@ -135,14 +135,14 @@ int main(int argc, char *argv[])                                 //main method
     for(i=1;i<=customers;i++)
 	{
 	    pthread_create(&b[i],NULL,customer,(void*)&numb[i]);
-		sleep(1);
-    }
+	    sleep(1);
+        }
     
 	for(i=1;i<=customers;i++)
 	{
 	    pthread_join(b[i],NULL);
 	    sleep(1);
-    }
+        }
         done=1;
 	sem_post(&pillow);
 	pthread_join(a,NULL);
